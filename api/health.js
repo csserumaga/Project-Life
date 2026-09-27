@@ -1,0 +1,1 @@
+import { neon } from '@neondatabase/serverless';export default async function handler(req,res){try{const sql=neon(process.env.DATABASE_URL||process.env.POSTGRES_URL);const r=await sql`select now() as now`;res.status(200).json({ok:true,database:true,at:r[0].now});}catch(e){res.status(500).json({ok:false,database:false});}}
